@@ -19,18 +19,30 @@ model List {
     author String
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-    movies Movie[]
+    movies ListMovie[]
 }
 
 model Movie {
-    id String @id @default(ulid())
+    id String @id @default(uuid())
+    imdbId String @unique
     title String
-    released DateTime
-    genre String
-    runtime String
-    plot String
-    poster String
+    released DateTime?
+    genre String?
+    runtime String?
+    plot String?
+    poster String?
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt
-    lists List[]
+    lists ListMovie[]
+}
+
+model ListMovie {
+    listId String
+    movieId String
+    addedAt DateTime @default(now())
+
+    list List @relation(fields: [listId], references: [id], onDelete: Cascade)
+    movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+    @@id([listId, movieId])
 }
