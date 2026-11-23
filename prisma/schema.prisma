@@ -26,6 +26,7 @@ model Movie {
     id String @id @default(uuid())
     imdbId String @unique
     title String
+    type String
     released DateTime?
     genre String?
     runtime String?
