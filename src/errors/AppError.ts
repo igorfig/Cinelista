@@ -24,7 +24,7 @@ export class ConflictError extends AppError {
 
 export class ValidationError extends AppError {
     constructor(details: unknown) {
-        super("Dados inválidos", 400, "VALIDATION_ERRROR", details);
+        super("Dados inválidos", 400, "VALIDATION_ERROR", details);
     }
 }
 

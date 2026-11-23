@@ -2,20 +2,33 @@ import { z } from "zod";
 
 export const getListSchema = {
     params: z.object({
-        id: z.uuid(),
+        listId: z.uuid({ error: "O ID da lista deve ser um UUID válido" }),
     }),
 };
 
 export const createListSchema = {
     body: z.object({
-        title: z.string().min(1).trim(),
-        description: z.string().trim().optional(),
-        author: z.string().trim(),
+        title: z
+            .string({ error: "O título deve ser um texto" })
+            .trim()
+            .min(1, { error: "O título é obrigatório" }),
+        description: z
+            .string({ error: "A descrição deve ser um texto" })
+            .trim()
+            .optional(),
+        author: z
+            .string({ error: "O autor deve ser um texto" })
+            .trim()
+            .min(1, { error: "O autor é obrigatório" }),
     }),
 };
 
 export const updateListSchema = {
-    body: createListSchema.body.partial(),
+    body: createListSchema.body
+        .partial()
+        .refine((data) => Object.keys(data).length > 0, {
+            error: "Informe ao menos um campo para atualizar",
+        }),
     params: getListSchema.params,
 };
 
