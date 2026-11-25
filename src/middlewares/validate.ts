@@ -20,7 +20,11 @@ export const validate =
             const result = schema.safeParse(req[target]);
 
             if (result.success) {
-                Object.assign(req[target], result.data);
+                Object.defineProperty(req, target, {
+                    value: result.data,
+                    writable: true,
+                    configurable: true,
+                });
             } else {
                 errors[target] = z.treeifyError(result.error);
             }
