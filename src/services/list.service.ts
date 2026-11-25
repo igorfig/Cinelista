@@ -4,6 +4,7 @@ import type {
     createListInput,
     updateListInput,
 } from "../schemas/list.schema.js";
+import { movieService } from "./movie.service.js";
 
 export const listService = {
     findAll() {
@@ -25,7 +26,7 @@ export const listService = {
     },
 
     async update(listId: string, data: updateListInput) {
-        const list = await listRepository.findById(listId);
+        const list = await listRepository.existsById(listId);
 
         if (!list) throw new NotFoundError("Lista");
 
@@ -35,10 +36,32 @@ export const listService = {
     },
 
     async delete(listId: string) {
-        const list = await listRepository.findById(listId);
+        const list = await listRepository.existsById(listId);
 
         if (!list) throw new NotFoundError("Lista");
 
         return listRepository.delete(listId);
+    },
+
+    async addMovie(listId: string, imdbId: string) {
+        const list = await listRepository.existsById(listId);
+
+        if (!list) throw new NotFoundError("Lista");
+
+        const movie = await movieService.findOrCreate(imdbId);
+        await listRepository.addMovie(listId, movie.id);
+
+        return movie;
+    },
+
+    async deleteMovie(listId: string, movieId: string) {
+        const { count } = await listRepository.deleteMovie(listId, movieId);
+
+        if (count === 0) {
+            const list = await listRepository.existsById(listId);
+
+            if (!list) throw new NotFoundError("Lista");
+            throw new NotFoundError("Filme/série na lista");
+        }
     },
 };

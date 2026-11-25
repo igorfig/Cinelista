@@ -3,9 +3,11 @@ import { listController } from "../../controllers/list.controller.js";
 import { validate } from "../../middlewares/validate.js";
 import {
     createListSchema,
+    deleteMovieFromListSchema,
     getListSchema,
     updateListSchema,
 } from "../../schemas/list.schema.js";
+import { addMovieToListSchema } from "../../schemas/movie.schema.js";
 
 export function listRoutes() {
     const router = Router();
@@ -21,8 +23,16 @@ export function listRoutes() {
 
     // Filmes/Series da lista
 
-    // router.post("/:listId/movies");
-    // router.delete("/:listId/movies/:movieId");
+    router.post(
+        "/:listId/movies",
+        validate(addMovieToListSchema),
+        listController.addMovie,
+    );
+    router.delete(
+        "/:listId/movies/:movieId",
+        validate(deleteMovieFromListSchema),
+        listController.deleteMovie,
+    );
 
     return router;
 }

@@ -1,3 +1,5 @@
+export type OmdbTitleType = "movie" | "series" | "episode";
+
 export interface OmdbMovie {
     Response: "True";
     imdbID: string;
@@ -7,7 +9,7 @@ export interface OmdbMovie {
     Genre: string;
     Plot: string;
     Poster: string; // URL ou "N/A"
-    Type: "movie" | "series" | "episode";
+    Type: OmdbTitleType;
     totalSeasons?: string;
 }
 

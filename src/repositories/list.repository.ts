@@ -39,4 +39,23 @@ export const listRepository = {
             where: { id: listId },
         });
     },
+
+    addMovie(listId: string, movieId: string) {
+        return prisma.listMovie.create({
+            data: { listId, movieId },
+        });
+    },
+
+    existsById(listId: string) {
+        return prisma.list.findUnique({
+            where: { id: listId },
+            select: { id: true },
+        });
+    },
+
+    deleteMovie(listId: string, movieId: string) {
+        return prisma.listMovie.deleteMany({
+            where: { listId, movieId },
+        });
+    },
 };

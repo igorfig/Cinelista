@@ -32,5 +32,12 @@ export const updateListSchema = {
     params: getListSchema.params,
 };
 
+export const deleteMovieFromListSchema = {
+    params: getListSchema.params.extend({
+        movieId: z.uuid({ error: "O ID do filme deve ser um UUID válido" }),
+    }),
+};
+
+export type GetListParams = z.infer<typeof getListSchema.params>;
 export type createListInput = z.infer<typeof createListSchema.body>;
 export type updateListInput = z.infer<typeof updateListSchema.body>;
