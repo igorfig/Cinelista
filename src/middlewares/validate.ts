@@ -11,7 +11,8 @@ type Schemas = {
 export const validate =
     (schemas: Schemas) =>
     (req: Request, _res: Response, next: NextFunction) => {
-        const errors: Record<string, unknown> = {};
+        const errors: Partial<Record<"body" | "params" | "query", unknown>> =
+            {};
 
         for (const target of ["body", "params", "query"] as const) {
             const schema = schemas[target];
