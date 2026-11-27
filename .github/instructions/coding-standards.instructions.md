@@ -62,17 +62,17 @@ Add explicit return types when they improve readability, clarify public contract
 
 Follow these naming conventions for new code:
 
-| Element          | Convention                    | Example                |
-| ---------------- | ----------------------------- | ---------------------- |
-| Files            | Lowercase, dot-separated      | `list.service.ts`      |
-| Variables        | camelCase                     | `listId`               |
-| Functions        | camelCase                     | `findListById`         |
-| Classes          | PascalCase                    | `NotFoundError`        |
-| Types            | PascalCase                    | `CreateListInput`      |
-| Interfaces       | PascalCase                    | `ListRepository`       |
-| Global constants | UPPER_SNAKE_CASE              | `OMDB_API_KEY`         |
-| Tests            | `*.test.ts`                   | `list.service.test.ts` |
-| Folders          | Existing project convention   | `controllers/`         |
+| Element          | Convention                  | Example                |
+| ---------------- | --------------------------- | ---------------------- |
+| Files            | Lowercase, dot-separated    | `list.service.ts`      |
+| Variables        | camelCase                   | `listId`               |
+| Functions        | camelCase                   | `findListById`         |
+| Classes          | PascalCase                  | `NotFoundError`        |
+| Types            | PascalCase                  | `CreateListInput`      |
+| Interfaces       | PascalCase                  | `ListRepository`       |
+| Global constants | UPPER_SNAKE_CASE            | `OMDB_API_KEY`         |
+| Tests            | `*.test.ts`                 | `list.service.test.ts` |
+| Folders          | Existing project convention | `controllers/`         |
 
 Use descriptive names that communicate intent.
 
