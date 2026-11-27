@@ -14,12 +14,11 @@ applyTo: "**/*.test.ts, **/*.spec.ts, **/tests/**/*.ts"
 - Follow the project's existing testing conventions and configuration.
 - Do not modify production code solely to make tests easier unless the change is justified.
 
-## 2. Test Runner
+## 2. Testing Framework
 
-- Use the test runner configured by the project's scripts.
-- The current integration suite uses Node.js `node:test`, executed with `tsx --test`.
-- Follow the APIs and conventions of the configured runner.
-- Do not assume that APIs available in other testing frameworks are supported.
+- Use Vitest as the project's testing framework.
+- Respect the installed Vitest version and its supported APIs.
+- Do not assume that APIs available in other Vitest versions are supported.
 - Use TypeScript for test files.
 - Follow the `*.test.ts` naming convention.
 - Keep test configuration centralized and consistent.
