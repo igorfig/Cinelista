@@ -1,5 +1,8 @@
 import "dotenv/config";
-import type { OmdbMovieResponse, OmdbSearchResponse } from "../types/omdb.js";
+import type {
+    OmdbMovieResponse,
+    OmdbSearchResponse,
+} from "../types/omdb.types.js";
 import type { SearchQuery } from "../schemas/movie.schema.js";
 
 const OMDB_API_KEY = process.env.OMDB_API_KEY;
